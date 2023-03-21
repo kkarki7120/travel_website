@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Travelme{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header >
+
+  <div id="menu-bar" class="fas fa-bars"></div>
+
+  <a href="#" class="logo"><span>Travel</span>me</a>
+
+  <nav class="navbar">
+      <a href="{% url 'index' %}">home</a>
+
+        {% for category in menu_categories %}
+     
+     <a href="{% url 'category' category.slug %}">{{ category.title }}</a>
+     
+      {% endfor %}
+      <a href="#services">guides</a>
+      <a href="{% url 'gallery' %}">gallery</a>
+      <a href="#contact">about us</a>
+  </nav>
+
+
+
+  <div class="icons">
+      <i class="fas fa-search" id="search-btn"></i>
+      <form method="get" action="{% url 'search' %}" class="search-bar-container">
+        <input type="search" id="search-bar" placeholder="search here...">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
+      {% if user.is_authenticated %}
+      <a class="" href="{% url 'logout' %}">Logout</a>
+      
+      {% else %}
+      <a class="fas fa-user" href="{% url 'login' %}"> Login</a>
+      {% endif %}
+  </div>
+  <div class="icons">
+      {% if user.is_guide %}
+
+    <a class="" href="{% url 'guide' %}">{{ user.username }}</a>
+      {% else %}
+      {% endif %}
+  
+
+  
+
+
+  
+
+</header>
+
+
+<!-- header section ends -->
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+<section class="footer">
+
+  <div class="box-container">
+
+     
+      <div class="box">
+          <h3>branch locations</h3>
+          <a href="#">india</a>
+          <a href="#">USA</a>
+          <a href="#">japan</a>
+          <a href="#">france</a>
+      </div>
+      <div class="box">
+          <h3>quick links</h3>
+          <a href="#">home</a>
+          <a href="#">book</a>
+          <a href="#">packages</a>
+          <a href="#">about</a>
+          <a href="#">gallery</a>
+          <a href="#">aboutus</a>
+          <a href="#">guides</a>
+      </div>
+      <div class="box">
+          <h3>follow us</h3>
+          <a href="#">facebook</a>
+          <a href="#">instagram</a>
+          <a href="#">twitter</a>
+          <a href="#">linkedin</a>
+      </div>
+
+  </div>
+
+  
+</section>
+
+
+<script src="{% static 'scripts/scripts.js' %}"></script>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</body>
+</html>
+

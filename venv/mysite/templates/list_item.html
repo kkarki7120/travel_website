@@ -1,0 +1,14 @@
+{% load static%}
+<section class="product">
+
+<link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+<div class="tours">
+    <img src="{{ product.image.url }}" alt="">
+    <h1>{{ product.title }} </h1>
+    <p class="price">${{ product.price }}</p>
+    <p>{{ product.description }}</p>
+    <a href="{% url 'product' product.category.slug product.slug %}" class="btn">book now</a>
+  </div>
+</section>
+
